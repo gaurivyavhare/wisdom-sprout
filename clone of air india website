@@ -1,0 +1,1077 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air India | Fly Beyond</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #b3132b;
+    --dark-red: #710d20;
+    --gold: #c9a45c;
+    --cream: #faf7f0;
+    --text: #242424;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: #fff;
+}
+
+button, input, select {
+    font: inherit;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Top navigation */
+.topbar {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 14px 7%;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    text-decoration: none;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.brand-mark {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 25px;
+}
+
+.brand small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #666;
+    margin-top: 3px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 27px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: color .25s;
+}
+
+.nav-links a:hover {
+    color: var(--red);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-btn {
+    border: 1px solid var(--red);
+    background: white;
+    color: var(--red);
+    border-radius: 5px;
+    padding: 11px 19px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .25s;
+}
+
+.login-btn:hover {
+    background: var(--red);
+    color: white;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: 0;
+    color: var(--red);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Hero section */
+.hero {
+    min-height: 500px;
+    padding: 70px 7%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg,
+        rgba(47, 5, 17, .86) 0%,
+        rgba(63, 9, 22, .60) 48%,
+        rgba(0, 0, 0, .05) 100%),
+        url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2000&q=85")
+        center 45% / cover no-repeat;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.eyebrow {
+    color: #f0d5a0;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.05;
+    font-weight: 500;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: #f1d6a2;
+}
+
+.hero p {
+    line-height: 1.8;
+    font-size: 16px;
+    max-width: 450px;
+    color: #f3e9e9;
+    margin-bottom: 28px;
+}
+
+.gold-btn {
+    border: none;
+    background: var(--gold);
+    color: #27170a;
+    font-weight: bold;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: .25s;
+}
+
+.gold-btn:hover {
+    background: #e4c47f;
+    transform: translateY(-2px);
+}
+
+/* Booking section */
+.booking-wrap {
+    max-width: 1200px;
+    margin: -45px auto 0;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.booking-card {
+    background: white;
+    border-radius: 9px;
+    padding: 28px;
+    box-shadow: 0 12px 35px #00000017;
+}
+
+.booking-tabs {
+    display: flex;
+    gap: 28px;
+    border-bottom: 1px solid #e7e2dc;
+    margin-bottom: 25px;
+    overflow-x: auto;
+}
+
+.booking-tab {
+    padding: 0 0 14px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #666;
+    font-weight: bold;
+}
+
+.booking-tab.active {
+    color: var(--red);
+    border-color: var(--red);
+}
+
+.trip-options {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.trip-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.trip-options input {
+    accent-color: var(--red);
+}
+
+.flight-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 45px 1.1fr 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: end;
+}
+
+.field {
+    min-width: 0;
+}
+
+.field label {
+    display: block;
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 9px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #dedede;
+    background: white;
+    border-radius: 5px;
+    padding: 13px 10px;
+    outline: none;
+    color: #333;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 2px #b3132b14;
+}
+
+.swap-btn {
+    width: 42px;
+    height: 44px;
+    border: 1px solid #e2d4c0;
+    color: var(--red);
+    background: #fffaf2;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 21px;
+    transition: .25s;
+    margin-bottom: 1px;
+}
+
+.swap-btn:hover {
+    transform: rotate(180deg);
+}
+
+.booking-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 23px;
+    flex-wrap: wrap;
+}
+
+.promo {
+    color: #777;
+    font-size: 13px;
+}
+
+.promo strong {
+    color: var(--red);
+}
+
+.search-btn {
+    background: var(--red);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 15px 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.search-btn:hover {
+    background: var(--dark-red);
+    transform: translateY(-2px);
+}
+
+/* Offers */
+.offers {
+    padding: 75px 7%;
+    background: var(--cream);
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-heading p {
+    color: var(--red);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: clamp(27px, 4vw, 38px);
+    font-weight: 500;
+}
+
+.offer-grid {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.offer-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #00000009;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 14px 30px #00000015;
+}
+
+.offer-image {
+    height: 210px;
+    background-size: cover;
+    background-position: center;
+}
+
+.offer-body {
+    padding: 24px;
+}
+
+.offer-body small {
+    color: var(--red);
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.offer-body h3 {
+    margin: 12px 0;
+    font-size: 22px;
+}
+
+.offer-body p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.text-btn {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.text-btn:hover {
+    text-decoration: underline;
+}
+
+/* Travel banner */
+.travel-banner {
+    margin: 65px 7%;
+    padding: 45px;
+    border-radius: 10px;
+    color: white;
+    background:
+        linear-gradient(100deg, #760d20ee, #a7142de8),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80")
+        center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.travel-banner h2 {
+    font-size: clamp(25px, 4vw, 38px);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.travel-banner p {
+    color: #f2dddd;
+    line-height: 1.7;
+}
+
+/* Footer */
+footer {
+    background: #201b1b;
+    color: white;
+    padding: 45px 7% 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 35px;
+    padding-bottom: 35px;
+}
+
+.footer-grid h3 {
+    margin-bottom: 18px;
+    color: #e0c18b;
+    font-size: 15px;
+}
+
+.footer-grid p {
+    color: #c5bdbd;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+.footer-grid a {
+    display: block;
+    margin-bottom: 12px;
+    color: #c5bdbd;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.footer-grid a:hover {
+    color: white;
+}
+
+.copyright {
+    padding-top: 22px;
+    border-top: 1px solid #514747;
+    text-align: center;
+    color: #b9aeae;
+    font-size: 12px;
+}
+
+/* Popup */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #0009;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 10px;
+    padding: 32px;
+    text-align: center;
+    animation: pop .25s ease;
+}
+
+.modal-box h2 {
+    color: var(--red);
+    margin-bottom: 15px;
+}
+
+.modal-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+@keyframes pop {
+    from { opacity: 0; transform: scale(.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 1050px) {
+    .topbar { padding: 14px 4%; }
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 12px; }
+
+    .flight-grid {
+        grid-template-columns: 1fr 42px 1fr;
+    }
+
+    .flight-grid .field:nth-of-type(n+4) {
+        margin-top: 12px;
+    }
+
+    .swap-btn { align-self: end; }
+}
+
+@media (max-width: 760px) {
+    .topbar {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .menu-btn { display: block; }
+
+    .nav-links {
+        display: none;
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links li a {
+        display: block;
+        padding: 14px 0;
+        border-top: 1px solid #eee;
+        font-size: 14px;
+    }
+
+    .nav-right { margin-left: auto; }
+    .brand { font-size: 21px; }
+    .brand-mark { width: 36px; height: 36px; }
+
+    .hero {
+        min-height: 440px;
+        padding: 60px 7%;
+        background-position: center;
+    }
+
+    .booking-wrap { margin-top: -25px; }
+    .booking-card { padding: 22px 16px; }
+    .booking-tabs { gap: 20px; }
+
+    .flight-grid {
+        grid-template-columns: 1fr 40px 1fr;
+        gap: 10px;
+    }
+
+    .flight-grid .field:nth-of-type(n+4) {
+        margin-top: 10px;
+    }
+
+    .offer-grid { grid-template-columns: 1fr; }
+    .offer-image { height: 230px; }
+
+    .travel-banner {
+        margin: 45px 5%;
+        padding: 30px 23px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 420px) {
+    .login-btn { padding: 9px 12px; font-size: 12px; }
+    .brand { font-size: 18px; gap: 7px; }
+    .brand small { font-size: 8px; }
+
+    .flight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .swap-btn {
+        justify-self: center;
+        transform: rotate(90deg);
+    }
+
+    .swap-btn:hover { transform: rotate(270deg); }
+
+    .field input, .field select { padding: 13px; }
+    .booking-bottom { align-items: stretch; }
+    .search-btn { width: 100%; }
+    .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header class="topbar">
+    <a href="#home" class="brand">
+        <span class="brand-mark">✦</span>
+        <span>
+            AIR INDIA
+            <small>FLY BEYOND</small>
+        </span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn"
+            aria-label="Toggle navigation"
+            aria-expanded="false">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#booking">Book & Manage</a></li>
+        <li><a href="#offers">Offers</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#experience">Our Experience</a></li>
+    </ul>
+
+    <div class="nav-right">
+        <button class="login-btn" id="loginBtn">Sign In</button>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow">THE JOY OF FLYING</div>
+        <h1>Every journey<br>begins with a<br><span>dream.</span></h1>
+        <p>
+            Discover new destinations, reconnect with loved ones
+            and explore the world with a warm Indian welcome.
+        </p>
+        <button class="gold-btn"
+                onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+            BOOK YOUR JOURNEY &nbsp; →
+        </button>
+    </div>
+</section>
+
+<!-- Flight booking -->
+<section class="booking-wrap" id="booking">
+    <div class="booking-card">
+
+        <div class="booking-tabs">
+            <button class="booking-tab active" data-tab="flights">
+                ✈ Book Flights
+            </button>
+            <button class="booking-tab" data-tab="manage">
+                Manage Booking
+            </button>
+            <button class="booking-tab" data-tab="checkin">
+                Web Check-in
+            </button>
+            <button class="booking-tab" data-tab="status">
+                Flight Status
+            </button>
+        </div>
+
+        <div id="flightPanel">
+            <div class="trip-options">
+                <label>
+                    <input type="radio" name="trip" value="round" checked>
+                    Round Trip
+                </label>
+                <label>
+                    <input type="radio" name="trip" value="oneway">
+                    One Way
+                </label>
+                <label>
+                    <input type="radio" name="trip" value="multi">
+                    Multi City
+                </label>
+            </div>
+
+            <form id="flightForm">
+                <div class="flight-grid">
+
+                    <div class="field">
+                        <label for="from">FROM</label>
+                        <input id="from" type="text"
+                               placeholder="e.g. Mumbai" required>
+                    </div>
+
+                    <button type="button" class="swap-btn"
+                            id="swapBtn" aria-label="Swap destinations">
+                        ⇄
+                    </button>
+
+                    <div class="field">
+                        <label for="to">TO</label>
+                        <input id="to" type="text"
+                               placeholder="e.g. Delhi" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="depart">DEPARTURE</label>
+                        <input id="depart" type="date" required>
+                    </div>
+
+                    <div class="field" id="returnField">
+                        <label for="return">RETURN</label>
+                        <input id="return" type="date">
+                    </div>
+
+                    <div class="field">
+                        <label for="passengers">PASSENGERS</label>
+                        <select id="passengers">
+                            <option value="1">1 Adult</option>
+                            <option value="2">2 Adults</option>
+                            <option value="3">3 Adults</option>
+                            <option value="4">4 Adults</option>
+                            <option value="5">5 Adults</option>
+                            <option value="6">6 Adults</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="booking-bottom">
+                    <div class="promo">
+                        <strong>Special fares</strong> · Student · Senior Citizen
+                    </div>
+                    <button class="search-btn" type="submit">
+                        SEARCH FLIGHTS →
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="otherPanel" hidden>
+            <form id="otherForm">
+                <div class="field" style="max-width:500px">
+                    <label id="otherLabel" for="reference">
+                        BOOKING REFERENCE
+                    </label>
+                    <input id="reference" type="text"
+                           placeholder="Enter your reference number">
+                    <label for="surname" style="margin-top:15px">
+                        LAST NAME
+                    </label>
+                    <input id="surname" type="text"
+                           placeholder="Enter passenger last name">
+                </div>
+                <div style="margin-top:20px">
+                    <button type="submit" class="search-btn">
+                        CONTINUE →
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- Offers -->
+<section class="offers" id="offers">
+    <div class="section-heading">
+        <p>YOUR NEXT ADVENTURE</p>
+        <h2>Discover the joy of travelling</h2>
+    </div>
+
+    <div class="offer-grid">
+        <article class="offer-card" id="destinations">
+            <div class="offer-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=80')">
+            </div>
+            <div class="offer-body">
+                <small>EXPLORE INDIA</small>
+                <h3>The magic of Mumbai</h3>
+                <p>Discover vibrant streets, iconic landmarks
+                   and unforgettable city experiences.</p>
+                <a href="#booking" class="text-btn">Plan your trip →</a>
+            </div>
+        </article>
+
+        <article class="offer-card">
+            <div class="offer-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80')">
+            </div>
+            <div class="offer-body">
+                <small>INTERNATIONAL ESCAPES</small>
+                <h3>Dreaming of London?</h3>
+                <p>Make new memories exploring historic streets
+                   and world-famous attractions.</p>
+                <a href="#booking" class="text-btn">Explore flights →</a>
+            </div>
+        </article>
+
+        <article class="offer-card" id="experience">
+            <div class="offer-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80')">
+            </div>
+            <div class="offer-body">
+                <small>TRAVEL INSPIRATION</small>
+                <h3>Find your happy place</h3>
+                <p>From mountain escapes to peaceful beaches,
+                   your next adventure awaits.</p>
+                <a href="#booking" class="text-btn">Get inspired →</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- Promotional banner -->
+<section class="travel-banner">
+    <div>
+        <h2>Your world. Your journey.</h2>
+        <p>Make every mile memorable. Your next story starts here.</p>
+    </div>
+    <button class="gold-btn"
+            onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+        START EXPLORING →
+    </button>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h3>AIR INDIA</h3>
+            <p>A practice homepage inspired by airline travel
+               websites, designed for learning HTML, CSS and
+               JavaScript.</p>
+        </div>
+
+        <div>
+            <h3>BOOK & MANAGE</h3>
+            <a href="#booking">Book Flights</a>
+            <a href="#booking">Manage Booking</a>
+            <a href="#booking">Check-in</a>
+        </div>
+
+        <div>
+            <h3>DISCOVER</h3>
+            <a href="#destinations">Destinations</a>
+            <a href="#offers">Travel Offers</a>
+            <a href="#experience">Our Experience</a>
+        </div>
+
+        <div>
+            <h3>SUPPORT</h3>
+            <a href="#home">Help Centre</a>
+            <a href="#home">Contact Us</a>
+            <a href="#home">Travel Information</a>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026 Practice Project · Independent educational demo.
+        Not affiliated with Air India.
+    </div>
+</footer>
+
+<!-- Interaction popup -->
+<div class="modal" id="modal" role="dialog"
+     aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+        <h2 id="modalTitle">Welcome!</h2>
+        <p id="modalMessage"></p>
+        <button class="search-btn" id="closeModal">Close</button>
+    </div>
+</div>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalMessage = document.getElementById("modalMessage");
+
+function showModal(title, message) {
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modal.classList.add("show");
+}
+
+document.getElementById("closeModal").addEventListener("click", () => {
+    modal.classList.remove("show");
+});
+
+modal.addEventListener("click", event => {
+    if (event.target === modal) modal.classList.remove("show");
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") modal.classList.remove("show");
+});
+
+// Mobile navigation
+menuBtn.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    menuBtn.textContent = open ? "✕" : "☰";
+    menuBtn.setAttribute("aria-expanded", String(open));
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+    });
+});
+
+// Booking tab interaction
+const tabs = document.querySelectorAll(".booking-tab");
+const flightPanel = document.getElementById("flightPanel");
+const otherPanel = document.getElementById("otherPanel");
+const otherLabel = document.getElementById("otherLabel");
+const reference = document.getElementById("reference");
+const surname = document.getElementById("surname");
+
+let selectedTab = "flights";
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        selectedTab = tab.dataset.tab;
+        const isFlight = selectedTab === "flights";
+
+        flightPanel.hidden = !isFlight;
+        otherPanel.hidden = isFlight;
+
+        if (!isFlight) {
+            const labels = {
+                manage: "BOOKING REFERENCE",
+                checkin: "BOOKING REFERENCE",
+                status: "FLIGHT NUMBER"
+            };
+
+            otherLabel.textContent = labels[selectedTab];
+            reference.placeholder =
+                selectedTab === "status"
+                ? "Enter flight number"
+                : "Enter booking reference";
+
+            surname.parentElement.style.display =
+                selectedTab === "status" ? "none" : "block";
+
+            surname.required = selectedTab !== "status";
+        }
+    });
+});
+
+// Round trip and one-way selection
+const returnField = document.getElementById("returnField");
+const returnDate = document.getElementById("return");
+
+document.querySelectorAll('input[name="trip"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+        const oneWay = radio.value === "oneway" && radio.checked;
+        returnField.style.display = oneWay ? "none" : "block";
+        returnDate.required = !oneWay;
+    });
+});
+
+// Swap origin and destination
+document.getElementById("swapBtn").addEventListener("click", () => {
+    const from = document.getElementById("from");
+    const to = document.getElementById("to");
+    [from.value, to.value] = [to.value, from.value];
+});
+
+// Date restrictions
+const today = new Date();
+const localToday = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0")
+].join("-");
+
+const depart = document.getElementById("depart");
+depart.min = localToday;
+returnDate.min = localToday;
+
+depart.addEventListener("change", () => {
+    returnDate.min = depart.value || localToday;
+
+    if (returnDate.value && returnDate.value < depart.value) {
+        returnDate.value = "";
+    }
+});
+
+// Flight search demo
+document.getElementById("flightForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const from = document.getElementById("from").value.trim();
+    const to = document.getElementById("to").value.trim();
+    const departure = depart.value;
+    const oneWay = document.querySelector(
+        'input[name="trip"]:checked'
+    ).value === "oneway";
+
+    if (from.toLowerCase() === to.toLowerCase()) {
+        showModal("Check your journey",
+                  "Origin and destination must be different.");
+        return;
+    }
+
+    if (!oneWay && returnDate.value < departure) {
+        showModal("Check your dates",
+                  "Return date must be on or after departure.");
+        return;
+    }
+
+    showModal("Flight search demo",
+        `Your sample search: ${from} to ${to}, departing ${departure}. ` +
+        "This practice website does not connect to a real flight booking system.");
+});
+
+// Manage booking / check-in / flight status demo
+document.getElementById("otherForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    showModal("Demo feature",
+        "This feature is for interface demonstration only. " +
+        "No real booking or flight status has been retrieved.");
+});
+
+// Sign in demo
+document.getElementById("loginBtn").addEventListener("click", () => {
+    showModal("Welcome traveller",
+        "Sign-in functionality can be added with a backend and user database.");
+});
+</script>
+
+</body>
+</html>
