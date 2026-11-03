@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DreamHome - Real Estate</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    color: #222;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 18px 6%;
+    background: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2796f5;
+}
+
+.logo span {
+    color: #222;
+}
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.nav-button {
+    justify-self: end;
+    background: #2995f5;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 480px;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600")
+    center/cover;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 50px 5%;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1050px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: white;
+    font-size: 19px;
+    margin-bottom: 35px;
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    justify-content: start;
+}
+
+.tabs button {
+    padding: 12px;
+    background: #2995f5;
+    color: white;
+    border-radius: 5px 5px 0 0;
+}
+
+.tabs button:first-child {
+    background: white;
+    color: #222;
+}
+
+.search-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 110px;
+    gap: 12px;
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.search-box label {
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.search-box select {
+    width: 100%;
+    padding: 12px 7px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-btn {
+    background: #2995f5;
+    color: white;
+    border-radius: 5px;
+    align-self: end;
+    padding: 13px;
+}
+
+/* COMMON SECTION */
+
+.section {
+    padding: 65px 6%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: #888;
+    font-size: 14px;
+}
+
+/* PROPERTY GRID */
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px 18px;
+}
+
+.property-card {
+    background: white;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.property-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.property-image {
+    position: relative;
+}
+
+.tag {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    background: #3abf91;
+    color: white;
+    font-size: 10px;
+    padding: 6px 9px;
+    border-radius: 3px;
+}
+
+.tag.sale {
+    background: #6579ca;
+}
+
+.property-info {
+    padding: 12px;
+}
+
+.property-info h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.property-details {
+    color: #777;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.address {
+    color: #888;
+    font-size: 11px;
+}
+
+.load-more {
+    display: block;
+    margin: 35px auto 0;
+    padding: 12px 35px;
+    border: 1px solid #2995f5;
+    color: #2995f5;
+    background: white;
+    border-radius: 5px;
+}
+
+/* WIDE SELECTION */
+
+.wide-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    grid-template-rows: 180px 180px;
+    gap: 12px;
+}
+
+.wide-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.wide-grid .large-image {
+    grid-row: span 2;
+}
+
+.wide-text {
+    padding: 15px;
+}
+
+.wide-text h2 {
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.wide-text p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.7;
+}
+
+/* WHY CHOOSE US */
+
+.why-section {
+    background:
+    linear-gradient(rgba(10,42,65,.75),rgba(10,42,65,.75)),
+    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1500")
+    center/cover;
+    padding: 65px 6%;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.why-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    color: white;
+}
+
+.why-content h2 {
+    grid-column: span 2;
+    font-size: 30px;
+}
+
+.reason h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.reason p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #eee;
+}
+
+.inquiry-form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.inquiry-form h3 {
+    margin-bottom: 18px;
+}
+
+.inquiry-form label {
+    display: block;
+    font-size: 12px;
+    margin: 12px 0 6px;
+}
+
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.inquiry-form textarea {
+    height: 75px;
+    resize: vertical;
+}
+
+.inquiry-form button {
+    background: #2995f5;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* FEATURED LISTINGS */
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.featured-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.featured-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.featured-card h3 {
+    padding: 12px;
+    font-size: 15px;
+}
+
+.featured-card p {
+    padding: 0 12px 15px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* TESTIMONIALS */
+
+.testimonials {
+    text-align: center;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    margin-top: 35px;
+}
+
+.testimonial {
+    padding: 20px;
+}
+
+.testimonial img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.testimonial h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.testimonial small {
+    color: #999;
+}
+
+.testimonial p {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* NEWSLETTER AND FOOTER */
+
+.newsletter {
+    background: #2995f5;
+    padding: 20px 6%;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.newsletter input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 25px;
+    border: none;
+}
+
+.footer {
+    background: #303030;
+    color: white;
+    padding: 45px 6% 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.footer h3 {
+    margin-bottom: 15px;
+}
+
+.footer p,
+.footer a {
+    color: #ccc;
+    font-size: 13px;
+    line-height: 1.8;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #555;
+    padding-top: 20px;
+    margin-top: 30px;
+    font-size: 12px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 900px) {
+    .property-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    .navbar {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .nav-links {
+        grid-template-columns: repeat(2, auto);
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .search-box {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-btn {
+        grid-column: span 2;
+    }
+
+    .tabs {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .property-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wide-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 150px 150px;
+    }
+
+    .wide-grid .large-image {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .wide-text {
+        grid-column: span 2;
+    }
+
+    .why-content {
+        grid-template-columns: 1fr;
+    }
+
+    .why-content h2 {
+        grid-column: span 1;
+    }
+
+    .featured-grid,
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+    <div class="logo">🔵 <span>DreamHome</span></div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#properties">Explore</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+    </div>
+
+    <button class="nav-button" onclick="location.href='#contact'">
+        Request a Call
+    </button>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+    <div class="hero-content">
+
+        <h1>YOUR DREAM HOME</h1>
+        <p>IS ONE CLICK AWAY</p>
+
+        <div class="tabs">
+            <button>ALL UNITS</button>
+            <button>FOR RENT</button>
+            <button>FOR SALE</button>
+        </div>
+
+        <div class="search-box">
+
+            <div>
+                <label>LOOKING FOR</label>
+                <select>
+                    <option>Property Type</option>
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                    <option>House</option>
+                </select>
+            </div>
+
+            <div>
+                <label>LOCATION</label>
+                <select>
+                    <option>All Cities</option>
+                    <option>Mumbai</option>
+                    <option>Pune</option>
+                    <option>Nashik</option>
+                </select>
+            </div>
+
+            <div>
+                <label>PROPERTY SIZE</label>
+                <select>
+                    <option>Bedrooms</option>
+                    <option>1 Bedroom</option>
+                    <option>2 Bedrooms</option>
+                    <option>3 Bedrooms</option>
+                </select>
+            </div>
+
+            <div>
+                <label>BUDGET</label>
+                <select>
+                    <option>Max Price</option>
+                    <option>₹20 Lakhs</option>
+                    <option>₹50 Lakhs</option>
+                    <option>₹1 Crore</option>
+                </select>
+            </div>
+
+            <button class="search-btn"
+                onclick="location.href='#properties'">
+                Search
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<!-- EXPLORE PROPERTIES -->
+
+<section class="section" id="properties">
+
+    <div class="section-heading">
+        <h2>Explore Our Properties</h2>
+        <p>Enjoy the variety of 100+ different properties in the market!</p>
+    </div>
+
+    <div class="property-grid">
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600">
+                <span class="tag">FOR RENT</span>
+            </div>
+            <div class="property-info">
+                <h3>Light And Modern House</h3>
+                <p class="property-details">🛏 3 | 🚿 2 | 📐 1950 m²</p>
+                <p class="address">📍 7409 Knollwood Cove, Austin, TX</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600">
+                <span class="tag sale">FOR SALE</span>
+            </div>
+            <div class="property-info">
+                <h3>Beautiful Family House</h3>
+                <p class="property-details">🛏 3 | 🚿 2 | 📐 1950 m²</p>
+                <p class="address">📍 Austin, Texas</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600">
+                <span class="tag">FOR RENT</span>
+            </div>
+            <div class="property-info">
+                <h3>Luxury Modern Villa</h3>
+                <p class="property-details">🛏 4 | 🚿 3 | 📐 1950 m²</p>
+                <p class="address">📍 Knollwood Cove, Austin</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600">
+                <span class="tag">FOR RENT</span>
+            </div>
+            <div class="property-info">
+                <h3>Elegant White House</h3>
+                <p class="property-details">🛏 3 | 🚿 2 | 📐 1200 m²</p>
+                <p class="address">📍 Austin, Texas</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600">
+                <span class="tag">FOR RENT</span>
+            </div>
+            <div class="property-info">
+                <h3>Classic Luxury House</h3>
+                <p class="property-details">🛏 4 | 🚿 2 | 📐 1950 m²</p>
+                <p class="address">📍 Austin, Texas</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600">
+                <span class="tag">FOR RENT</span>
+            </div>
+            <div class="property-info">
+                <h3>Modern Interior House</h3>
+                <p class="property-details">🛏 3 | 🚿 2 | 📐 1950 m²</p>
+                <p class="address">📍 Austin, Texas</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600">
+                <span class="tag sale">FOR SALE</span>
+            </div>
+            <div class="property-info">
+                <h3>Contemporary Villa</h3>
+                <p class="property-details">🛏 4 | 🚿 3 | 📐 1950 m²</p>
+                <p class="address">📍 Austin, Texas</p>
+            </div>
+        </div>
+
+        <div class="property-card">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=600">
+                <span class="tag sale">FOR SALE</span>
+            </div>
+            <div class="property-info">
+                <h3>Beautiful Wooden House</h3>
+                <p class="property-details">🛏 3 | 🚿 2 | 📐 1500 m²</p>
+                <p class="address">📍 Austin, Texas</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="load-more">Load More</button>
+
+</section>
+
+<!-- WIDE SELECTION -->
+
+<section class="section" id="about">
+
+    <div class="wide-grid">
+
+        <img class="large-image"
+        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800">
+
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600">
+
+        <div class="wide-text">
+            <h2>Wide Selection Of Properties</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing
+                and typesetting industry. Explore our beautiful
+                collection of modern homes and luxury properties.
+            </p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600">
+
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600">
+
+    </div>
+
+</section>
+
+<!-- WHY CHOOSE US -->
+
+<section class="why-section">
+
+    <div class="why-grid">
+
+        <div class="why-content">
+
+            <h2>Why Our Service Is The Perfect Choice?</h2>
+
+            <div class="reason">
+                <h3>01. Quality Properties</h3>
+                <p>
+                    We provide quality homes with modern
+                    facilities and beautiful surroundings.
+                </p>
+            </div>
+
+            <div class="reason">
+                <h3>02. Expert Guidance</h3>
+                <p>
+                    Our experienced team helps you find
+                    your dream property.
+                </p>
+            </div>
+
+            <div class="reason">
+                <h3>03. Best Experience</h3>
+                <p>
+                    Enjoy a simple and comfortable
+                    property buying experience.
+                </p>
+            </div>
+
+        </div>
+
+        <form class="inquiry-form"
+        onsubmit="event.preventDefault(); alert('Thank you! Your inquiry has been submitted.');">
+
+            <h3>Real Estate Inquiry Form</h3>
+
+            <label>Inquiry Type</label>
+            <select>
+                <option>Renting Property</option>
+                <option>Buying Property</option>
+                <option>Selling Property</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" placeholder="John Doe" required>
+
+            <label>Email</label>
+            <input type="email" placeholder="example@domain.com" required>
+
+            <label>Phone (Optional)</label>
+            <input type="tel" placeholder="+91 12345 67890">
+
+            <label>Message</label>
+            <textarea placeholder="Please enter your message"></textarea>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- FEATURED LISTINGS -->
+
+<section class="section">
+
+    <div class="section-heading">
+        <h2>Featured Listings</h2>
+        <p>Browse our wide range of featured properties.</p>
+    </div>
+
+    <div class="featured-grid">
+
+        <div class="featured-card">
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700">
+            <h3>Luxury Classic House</h3>
+            <p>📍 Austin, Texas | 3 Bedrooms</p>
+        </div>
+
+        <div class="featured-card">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700">
+            <h3>Beautiful Modern House</h3>
+            <p>📍 Austin, Texas | 4 Bedrooms</p>
+        </div>
+
+        <div class="featured-card">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=700">
+            <h3>Modern Family Villa</h3>
+            <p>📍 Austin, Texas | 3 Bedrooms</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+
+<section class="section testimonials">
+
+    <div class="section-heading">
+        <h2>Testimonials</h2>
+        <p>What Our Clients Say About Us!</p>
+    </div>
+
+    <div class="testimonial-grid">
+
+        <div class="testimonial">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg">
+            <h3>David Elson</h3>
+            <small>7th July 2026</small>
+            <p>
+                "Very professional broker with great
+                apartment selections."
+            </p>
+        </div>
+
+        <div class="testimonial">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg">
+            <h3>Stephanie Nicol</h3>
+            <small>7th July 2026</small>
+            <p>
+                "Very good, they offer the best prices
+                and customer service."
+            </p>
+        </div>
+
+        <div class="testimonial">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg">
+            <h3>Allen Jordan</h3>
+            <small>7th July 2026</small>
+            <p>
+                "Good experience and customer welcoming
+                reflects the level of the broker."
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- NEWSLETTER -->
+
+<section class="newsletter">
+
+    <h3>Newsletter Signup</h3>
+
+    <input type="email" placeholder="Enter your email">
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+        <div>
+            <h2 class="logo">🔵 DreamHome</h2>
+            <p>
+                Find your perfect home with DreamHome.
+                We provide the best properties and
+                professional real estate services.
+            </p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <p><a href="#home">Home</a></p>
+            <p><a href="#properties">Properties</a></p>
+            <p><a href="#about">About Us</a></p>
+        </div>
+
+        <div>
+            <h3>Services</h3>
+            <p>Property Buying</p>
+            <p>Property Selling</p>
+            <p>Property Renting</p>
+        </div>
+
+        <div id="contact">
+            <h3>Contact</h3>
+            <p>Email: info@dreamhome.com</p>
+            <p>Phone: +91 9876543210</p>
+            <p>Location: India</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 DreamHome - All Rights Reserved
+    </div>
+
+</footer>
+
+</body>
+</html>
